@@ -12,6 +12,7 @@ import java.util.List;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
 
+    // Holds recyclerview items in memory.
     class WordViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
 

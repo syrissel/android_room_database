@@ -6,11 +6,14 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
+// Repository is a class that abstracts access to multiple data sources, and handles data operations.
+// It can manage query threads and allows you to use multiple data sources.
 public class WordRepository {
 
     private WordDao mWordDao;
     private LiveData<List<Word>> mAllWords;
 
+    // Application: base class for maintaining global application state. Used for context.
     WordRepository(Application application) {
         WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
         mWordDao = db.wordDao();
@@ -35,7 +38,10 @@ public class WordRepository {
 
         @Override
         protected Void doInBackground(final Word... params) {
-            mAsyncTaskDao.insert(params[0]);
+            for (int i = 0; i < params.length ; i++) {
+                mAsyncTaskDao.insert(params[i]);
+            }
+
             return null;
         }
     }

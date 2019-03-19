@@ -16,6 +16,9 @@ public abstract class WordRoomDatabase extends RoomDatabase {
 
     static WordRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
+            // synchronize keyword ensures that only one thread can perform this operation within
+            // the block.
+            // This avoids creating multiple instances of the database.
             synchronized (WordRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
@@ -26,6 +29,8 @@ public abstract class WordRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+    // Called when the database is created for the first time. This is called after
+    // all the tables are created.
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
@@ -35,6 +40,8 @@ public abstract class WordRoomDatabase extends RoomDatabase {
         }
     };
 
+    // Populate database with dummy data on a separate thread. Room database does operations
+    // off the main thread by default to avoid "jank" (slow down in the UI).
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final WordDao mDao;
