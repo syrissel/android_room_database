@@ -6,6 +6,8 @@ import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
+// Separates the UI from the Repository.
+// Responsible for holding and changing the data that is drawn to the UI.
 public class WordViewModel extends AndroidViewModel {
     private WordRepository mRepository;
     private LiveData<List<Word>> mAllWords;

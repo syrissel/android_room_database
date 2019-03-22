@@ -7,6 +7,9 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
+// Data Access Object. Allows you to create SQL Queries and associate them
+// with method calls. Some methods you don't have to use SQL, just annotations.
+// LiveData -- A class that allows data to be observable.
 @Dao
 public interface WordDao {
 

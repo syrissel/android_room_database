@@ -8,6 +8,8 @@ import java.util.List;
 
 // Repository is a class that abstracts access to multiple data sources, and handles data operations.
 // It can manage query threads and allows you to use multiple data sources.
+// In short, we use the Repository to interact and perform operations on the database
+// with the methods we defined in the Dao.
 public class WordRepository {
 
     private WordDao mWordDao;

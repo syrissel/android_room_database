@@ -8,6 +8,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+
+// Database layer on top of the SQLite database which means it abstracts lengthy SQLite code that
+// one would typically need to do with SQLiteOpenHelper.
 @Database(entities = {Word.class}, version = 1)
 public abstract class WordRoomDatabase extends RoomDatabase {
     public abstract WordDao wordDao();
